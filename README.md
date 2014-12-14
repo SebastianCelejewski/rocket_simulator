@@ -8,7 +8,6 @@ A simple rocket simulation for kids. It includes launch, staging, orbit injectio
 ![screenshot-01](https://cloud.githubusercontent.com/assets/9167230/5428329/500099a6-83bf-11e4-8c7f-f39b453c0836.jpeg)
 
 ### Keyboard
-- Q/W - zoom
 
 #### Left rocket:
 - A - main engine
@@ -17,7 +16,9 @@ A simple rocket simulation for kids. It includes launch, staging, orbit injectio
 - F1, F2, F3 - display modes
 - F5 - reset
 - F6 - rotation control mode
-
+- Q/W - zoom
+- E,R - manual view rotation
+- T - automatic view rotation
 
 #### Right rocket
 - UP - main engine
@@ -26,4 +27,7 @@ A simple rocket simulation for kids. It includes launch, staging, orbit injectio
 - F9, F10, F11 - display modes
 - F8 - reset
 - F7 - rotation control mode
+- Y/U - zoom
+- I/O - manual view rotation
+- P - automatic view rotation
 

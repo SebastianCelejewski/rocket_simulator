@@ -16,6 +16,7 @@ import pl.sebcel.rc.gui.formatters.DensityFormat;
 import pl.sebcel.rc.gui.formatters.DistanceFormat;
 import pl.sebcel.rc.gui.formatters.ForceFormat;
 import pl.sebcel.rc.gui.formatters.MassFormat;
+import pl.sebcel.rc.gui.formatters.PressureFormat;
 import pl.sebcel.rc.gui.formatters.RadialVelocityFormat;
 import pl.sebcel.rc.gui.formatters.VelocityFormat;
 import pl.sebcel.rc.infrastructure.events.EventBusFactory;
@@ -42,6 +43,7 @@ public class ControlsDisplay extends JComponent implements EventListener<RocketS
     private RadialVelocityFormat omegaF = new RadialVelocityFormat();
     private ForceFormat ff = new ForceFormat();
     private DensityFormat densF = new DensityFormat();
+    private PressureFormat pF = new PressureFormat();
 
     public ControlsDisplay(int rocketID) {
 	this.rocketID = rocketID;
@@ -162,6 +164,13 @@ public class ControlsDisplay extends JComponent implements EventListener<RocketS
 	g.setFont(regular);
 	g.drawString("\u03b1: " + alphaF.format(rocketStatus.getRelativeAlpha()), 90, 90);
 	g.drawString("\u03a9: " + omegaF.format(rocketStatus.getOmega()), 160, 90);
+	
+	g.setFont(bold);
+	g.drawString("Pressure", 12,105);
+	g.setFont(regular);
+	g.drawString("p:" + pF.format(rocketStatus.getStaticPressure()), 90, 105);
+	g.drawString("qx:" + pF.format(rocketStatus.getDynamicPressureX()), 160, 105);
+	g.drawString("qy:" + pF.format(rocketStatus.getDynamicPressureY()), 240, 105);
     }
 
     private void renderKineticStateSpaceRelative(Graphics g) {
@@ -192,6 +201,13 @@ public class ControlsDisplay extends JComponent implements EventListener<RocketS
 	g.setFont(regular);
 	g.drawString("\u03b1: " + alphaF.format(rocketStatus.getAlpha()), 90, 90);
 	g.drawString("\u03a9: " + omegaF.format(rocketStatus.getOmega()), 160, 90);
+	
+	g.setFont(bold);
+	g.drawString("Pressure", 12,105);
+	g.setFont(regular);
+	g.drawString("p:" + pF.format(rocketStatus.getStaticPressure()), 90, 105);
+	g.drawString("qx:" + pF.format(rocketStatus.getDynamicPressureX()), 160, 105);
+	g.drawString("qy:" + pF.format(rocketStatus.getDynamicPressureY()), 240, 105);
     }
 
     private void renderEnvironmentConditions(Graphics g) {

@@ -1,12 +1,12 @@
 package pl.sebcel.rc.gui.graphics;
 
+import java.awt.Point;
+
 public interface IScaler {
 
-    public int x(double x);
+    public Point p(double x, double y);
 
-    public int y(double y);
+    public int d(double distance);
 
-    public int width(double width);
-
-    public int height(double height);
+    public double getScale();
 }

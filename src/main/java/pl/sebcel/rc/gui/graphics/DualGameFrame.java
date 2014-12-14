@@ -27,11 +27,7 @@ public class DualGameFrame extends JFrame implements KeyListener {
     private GameCanvas leftCanvas;
     private GameCanvas rightCanvas;
 
-    private GraphicsEnvironment graphicsEnvironment;
-
     public DualGameFrame(GraphicsEnvironment graphicsEnvironment, PhysicalEnvironment physicalEnvironment) {
-	this.graphicsEnvironment = graphicsEnvironment;
-
 	this.leftControlsDisplay = new ControlsDisplay(0);
 	this.rightControlsDisplay = new ControlsDisplay(1);
 
@@ -98,11 +94,23 @@ public class DualGameFrame extends JFrame implements KeyListener {
 	}
 
 	if (e.getKeyCode() == KeyEvent.VK_Q) {
-	    graphicsEnvironment.zoomIn();
+	    leftCanvas.zoomIn();
 	}
 
 	if (e.getKeyCode() == KeyEvent.VK_W) {
-	    graphicsEnvironment.zoomOut();
+	    leftCanvas.zoomOut();
+	}
+
+	if (e.getKeyCode() == KeyEvent.VK_E) {
+	    leftCanvas.rotateLeft();
+	}
+
+	if (e.getKeyCode() == KeyEvent.VK_R) {
+	    leftCanvas.rotateRight();
+	}
+
+	if (e.getKeyCode() == KeyEvent.VK_T) {
+	    leftCanvas.rotateToRelativeVertical();
 	}
 
 	if (e.getKeyCode() == KeyEvent.VK_F6) {
@@ -158,6 +166,26 @@ public class DualGameFrame extends JFrame implements KeyListener {
 	}
 	if (e.getKeyCode() == 12) {
 	    rightControlsInterface.killRotation();
+	}
+
+	if (e.getKeyCode() == KeyEvent.VK_Y) {
+	    rightCanvas.zoomIn();
+	}
+
+	if (e.getKeyCode() == KeyEvent.VK_U) {
+	    rightCanvas.zoomOut();
+	}
+
+	if (e.getKeyCode() == KeyEvent.VK_I) {
+	    rightCanvas.rotateLeft();
+	}
+
+	if (e.getKeyCode() == KeyEvent.VK_O) {
+	    rightCanvas.rotateRight();
+	}
+
+	if (e.getKeyCode() == KeyEvent.VK_P) {
+	    rightCanvas.rotateToRelativeVertical();
 	}
 
 	if (e.getKeyCode() == KeyEvent.VK_F7) {

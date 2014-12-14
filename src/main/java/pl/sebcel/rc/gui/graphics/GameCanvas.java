@@ -10,8 +10,10 @@ public class GameCanvas extends JComponent implements IFocusListener {
 
     private double x;
     private double y;
+    private double alpha;
     private double vx;
     private double vy;
+    private double scale;
 
     private GraphicsEnvironment graphicsEnvironment;
     private ControlsDisplay controlPanel;
@@ -19,11 +21,13 @@ public class GameCanvas extends JComponent implements IFocusListener {
     public GameCanvas(GraphicsEnvironment graphicsEnvironment, ControlsDisplay controlPanel) {
 	this.graphicsEnvironment = graphicsEnvironment;
 	this.controlPanel = controlPanel;
+	this.scale = 1.0;
+	this.alpha = Math.PI / 2;
     }
 
     @Override
     public void paint(Graphics g) {
-	graphicsEnvironment.paint(g, x, y);
+	graphicsEnvironment.paint(g, x, y, alpha, scale);
 	controlPanel.paint(g);
     }
 
@@ -35,5 +39,26 @@ public class GameCanvas extends JComponent implements IFocusListener {
 	this.y += this.vy / 10;
 	this.x = x;
 	this.y = y;
+    }
+
+    public void zoomIn() {
+	scale = scale / Math.sqrt(10);
+    }
+
+    public void zoomOut() {
+	scale = scale * Math.sqrt(10);
+    }
+
+    public void rotateLeft() {
+	alpha = alpha - Math.PI / 96;
+    }
+
+    public void rotateRight() {
+	alpha = alpha + Math.PI / 96;
+    }
+
+    public void rotateToRelativeVertical() {
+	alpha = Math.atan2(y, x);
+	alpha = Math.PI - alpha;
     }
 }

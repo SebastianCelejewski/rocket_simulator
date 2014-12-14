@@ -31,7 +31,7 @@ public class EngineDust extends AbstractPhysicalObject implements GraphicalObjec
 	Color c = new Color(10, 10, 10, (int) (temperature * 255));
 	g.setColor(c);
 	int radius = radius(temperature);
-	g.fillOval(getX(), getY(), radius/2);
+	g.fillOval(getX(), getY(), radius / 2);
     }
 
     private int radius(double temperature) {

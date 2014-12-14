@@ -2,7 +2,10 @@ package pl.sebcel.rc.gui.graphics;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Polygon;
+
+import pl.sebcel.rc.gui.physics.Constants;
 
 public class ScalableGraphics {
 
@@ -14,48 +17,47 @@ public class ScalableGraphics {
 	this.s = s;
     }
 
-    public void fillRect(double xMin, double yMin, double xMax, double yMax) {
-	g.fillRect(s.x(xMin), s.y(yMax), s.x(xMax) - s.x(xMin), -s.y(yMax) + s.y(yMin));
-    }
-
     public void setColor(Color c) {
 	g.setColor(c);
     }
 
     public void drawOval(double x, double y, double i, double j) {
-	int width = s.width(i);
-	int height = Math.abs(s.height(j));
-	g.drawOval(s.x(x) - width / 2, s.y(y) - height / 2, width, height);
-    }
+	Point p = s.p(x, y);
+	int r = s.d(2 * i);
 
-    public void drawRect(double xMin, double yMin, double xMax, double yMax) {
-	g.drawRect(s.x(xMin), s.y(yMax), s.x(xMax) - s.x(xMin), -s.y(yMax) + s.y(yMin));
-    }
+	if (r < 2) {
+	    r = 2;
+	}
 
-    public void drawLine(double xMin, double yMin, double xMax, double yMax) {
-	g.drawLine(s.x(xMin), s.y(yMin), s.x(xMax), s.y(yMax));
+	g.drawOval(p.x - r / 2, p.y - r / 2, r, r);
     }
 
     public void fillOval(double x, double y, int i) {
-	int tx = s.x(x - i);
-	int ty = s.y(y + i);
-	int rx = s.width(2 * i);
-	int ry = s.width(2 * i);
+	Point p = s.p(x, y);
+	int r = s.d(2 * i);
 
-	if (rx < 2) {
-	    rx = 2;
-	}
-	if (ry < 2) {
-	    ry = 2;
+	if (r < 2) {
+	    r = 2;
 	}
 
-	g.fillOval(tx, ty, rx, ry);
+	double R = Constants.EARTH_RADIUS;
+//	if (s.getScale() > .001 && i == R) {
+//	    ScalablePolygon pt = new ScalablePolygon(0, 0, 0);
+//	    pt.addPoint(-R, -R);
+//	    pt.addPoint(-R, R);
+//	    pt.addPoint(R, R);
+//	    pt.addPoint(R, -R);
+//	    fillPolygon(pt);
+//	} else {
+	    g.fillOval(p.x - r / 2, p.y - r / 2, r, r);
+//	}
     }
 
     public void fillPolygon(ScalablePolygon p) {
 	Polygon polygon = new Polygon();
 	for (double[] point : p.getPoints()) {
-	    polygon.addPoint(s.x(point[0]), s.y(point[1]));
+	    Point pt = s.p(point[0], point[1]);
+	    polygon.addPoint(pt.x, pt.y);
 	}
 	g.fillPolygon(polygon);
     }
@@ -63,7 +65,8 @@ public class ScalableGraphics {
     public void drawPolygon(ScalablePolygon p) {
 	Polygon polygon = new Polygon();
 	for (double[] point : p.getPoints()) {
-	    polygon.addPoint(s.x(point[0]), s.y(point[1]));
+	    Point pt = s.p(point[0], point[1]);
+	    polygon.addPoint(pt.x, pt.y);
 	}
 	g.drawPolygon(polygon);
     }
@@ -71,5 +74,4 @@ public class ScalableGraphics {
     public Graphics getRawGraphics() {
 	return g;
     }
-
 }

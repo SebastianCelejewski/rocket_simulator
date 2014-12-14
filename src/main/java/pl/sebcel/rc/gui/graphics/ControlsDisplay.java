@@ -215,7 +215,7 @@ public class ControlsDisplay extends JComponent implements EventListener<RocketS
 	int x = clipBounds.width - 205;
 
 	g.setColor(new Color(255, 255, 255, 100));
-	g.fillRect(x, 18, 200, 110);
+	g.fillRect(x, 18, 200, 145);
 
 	g.setColor(Color.BLACK);
 	g.setFont(bold);
@@ -229,6 +229,8 @@ public class ControlsDisplay extends JComponent implements EventListener<RocketS
 	    g.drawString("Reset: F5", x + 5, 90);
 	    g.drawString("Control mode: F6", x + 5, 105);
 	    g.drawString("Display mode: F1, F2, F3", x + 5, 120);
+	    g.drawString("Zoom: Q, W", x + 5, 135);
+	    g.drawString("View rotation: E, R, T (auto)", x + 5, 150);
 	}
 	if (rocketID == 1) {
 	    g.drawString("Engines: cursor up, left, right", x + 5, 45);
@@ -237,6 +239,8 @@ public class ControlsDisplay extends JComponent implements EventListener<RocketS
 	    g.drawString("Reset: F8", x + 5, 90);
 	    g.drawString("Control mode: F7", x + 5, 105);
 	    g.drawString("Display mode: F9, F10, F11", x + 5, 120);
+	    g.drawString("Zoom: Y, U", x + 5, 135);
+	    g.drawString("View rotation: I, O, P (auto)", x + 5, 150);
 	}
     }
 }

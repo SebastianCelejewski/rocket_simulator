@@ -11,13 +11,12 @@ public class GraphicsEnvironment extends JComponent {
 
     private static final long serialVersionUID = 1L;
     private List<GraphicalObject> objects = new ArrayList<GraphicalObject>();
-    private double scale = 1;
 
     public void addGraphicsObject(GraphicalObject object) {
 	objects.add(object);
     }
 
-    public void paint(Graphics g, double x, double y) {
+    public void paint(Graphics g, double x, double y, double alpha, double scale) {
 	int blue = 255 - (int) ((double) y / 250);
 	if (blue < 0) {
 	    blue = 0;
@@ -30,7 +29,7 @@ public class GraphicsEnvironment extends JComponent {
 	g.setColor(backgroundColor);
 	g.fillRect(0, 0, g.getClipBounds().width, g.getClipBounds().height);
 
-	Scaler s = new Scaler(x, y, scale, scale);
+	Scaler s = new Scaler(x, y, scale, alpha);
 	s.setClipBounds(g.getClipBounds());
 
 	ScalableGraphics sg = new ScalableGraphics(g, s);
@@ -40,11 +39,4 @@ public class GraphicsEnvironment extends JComponent {
 	}
     }
 
-    public void zoomIn() {
-	scale = scale / Math.sqrt(10);
-    }
-
-    public void zoomOut() {
-	scale = scale * Math.sqrt(10);
-    }
 }

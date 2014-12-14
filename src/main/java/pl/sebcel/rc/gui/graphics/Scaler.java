@@ -1,21 +1,22 @@
 package pl.sebcel.rc.gui.graphics;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 
 public class Scaler implements IScaler {
 
-    private double scaleX;
-    private double scaleY;
+    private double scale;
+    private double alpha;
     private int offsetX;
     private int offsetY;
     private double generalX;
     private double generalY;
 
-    public Scaler(double generalX, double generalY, double scaleX, double scaleY) {
+    public Scaler(double generalX, double generalY, double scale, double alpha) {
 	this.generalX = generalX;
 	this.generalY = generalY;
-	this.scaleX = scaleX;
-	this.scaleY = -scaleY;
+	this.scale = scale;
+	this.alpha = alpha;
     }
 
     public void setClipBounds(Rectangle clipBounds) {
@@ -24,26 +25,28 @@ public class Scaler implements IScaler {
     }
 
     @Override
-    public int x(double x) {
+    public Point p(double x, double y) {
 	double dX = generalX;
-	int ret = offsetX + (int) (Math.round((x - dX) * scaleX));
-	return ret;
-    }
-
-    @Override
-    public int y(double y) {
 	double dY = generalY;
-	int ret = offsetY + (int) (Math.round((y - dY) * scaleY));
-	return ret;
+
+	double r = Math.sqrt((x - dX) * (x - dX) + (y - dY) * (y - dY)) * scale;
+	double b = Math.atan2(y - dY, x - dX);
+
+	double xx = r * Math.sin(alpha + b);
+	double yy = r * Math.cos(alpha + b);
+
+	int retX = offsetX + (int) (xx);
+	int retY = offsetY + (int) (yy);
+	return new Point(retX, retY);
     }
 
     @Override
-    public int width(double width) {
-	return (int) Math.round(width * scaleX);
+    public int d(double distance) {
+	return (int) Math.round(distance * scale);
     }
 
     @Override
-    public int height(double height) {
-	return (int) Math.round(height * scaleY);
+    public double getScale() {
+	return scale;
     }
 }

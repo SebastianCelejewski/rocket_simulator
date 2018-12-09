@@ -46,8 +46,7 @@ public class EngineSpark extends AbstractPhysicalObject implements GraphicalObje
 
     @Override
     public Shape getShape() {
-	// TODO Auto-generated method stub
-	return null;
+	return Shape.EMPTY;
     }
 
 }

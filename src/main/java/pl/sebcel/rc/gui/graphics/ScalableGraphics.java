@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 
-import pl.sebcel.rc.gui.physics.Constants;
-
 public class ScalableGraphics {
 
     private Graphics g;

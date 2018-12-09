@@ -9,6 +9,8 @@ public class Shape {
 
     private List<Point> points = new ArrayList<Point>();
     private List<Edge> edges = new ArrayList<Edge>();
+    
+    public static Shape EMPTY = new Shape();
 
     public void addPoint(Point point) {
 	points.add(point);

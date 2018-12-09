@@ -42,8 +42,7 @@ public class Tower extends AbstractPhysicalObject implements GraphicalObject {
 
     @Override
     public Shape getShape() {
-	// TODO Auto-generated method stub
-	return null;
+	return Shape.EMPTY;
     }
 
 }

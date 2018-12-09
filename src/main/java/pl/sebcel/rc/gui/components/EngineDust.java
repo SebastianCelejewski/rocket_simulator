@@ -56,7 +56,6 @@ public class EngineDust extends AbstractPhysicalObject implements GraphicalObjec
 
     @Override
     public Shape getShape() {
-	// TODO Auto-generated method stub
-	return null;
+	return Shape.EMPTY;
     }
 }

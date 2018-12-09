@@ -8,11 +8,9 @@ public class GameCanvas extends JComponent implements IFocusListener {
 
     private static final long serialVersionUID = 1L;
 
-    private double x;
-    private double y;
-    private double alpha;
-    private double vx;
-    private double vy;
+    private double viewportX;
+    private double viewportY;
+    private double viewportAlpha;
     private double scale;
 
     private GraphicsEnvironment graphicsEnvironment;
@@ -22,23 +20,19 @@ public class GameCanvas extends JComponent implements IFocusListener {
 	this.graphicsEnvironment = graphicsEnvironment;
 	this.controlPanel = controlPanel;
 	this.scale = 1.0;
-	this.alpha = Math.PI / 2;
+	this.viewportAlpha = Math.PI / 2;
     }
 
     @Override
     public void paint(Graphics g) {
-	graphicsEnvironment.paint(g, x, y, alpha, scale);
+	graphicsEnvironment.paint(g, viewportX, viewportY, viewportAlpha, scale);
 	controlPanel.paint(g);
     }
 
     @Override
     public void setLocation(double x, double y) {
-	this.vx = x - this.x;
-	this.vy = y - this.y;
-	this.x += this.vx / 10;
-	this.y += this.vy / 10;
-	this.x = x;
-	this.y = y;
+	this.viewportX = x;
+	this.viewportY = y;
     }
 
     public void zoomIn() {
@@ -50,15 +44,15 @@ public class GameCanvas extends JComponent implements IFocusListener {
     }
 
     public void rotateLeft() {
-	alpha = alpha - Math.PI / 96;
+	viewportAlpha = viewportAlpha - Math.PI / 96;
     }
 
     public void rotateRight() {
-	alpha = alpha + Math.PI / 96;
+	viewportAlpha = viewportAlpha + Math.PI / 96;
     }
 
     public void rotateToRelativeVertical() {
-	alpha = Math.atan2(y, x);
-	alpha = Math.PI - alpha;
+	viewportAlpha = Math.atan2(viewportY, viewportX);
+	viewportAlpha = Math.PI - viewportAlpha;
     }
 }

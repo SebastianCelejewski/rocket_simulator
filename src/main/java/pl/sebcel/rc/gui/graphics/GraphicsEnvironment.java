@@ -16,8 +16,8 @@ public class GraphicsEnvironment extends JComponent {
 	objects.add(object);
     }
 
-    public void paint(Graphics g, double x, double y, double alpha, double scale) {
-	int blue = 255 - (int) ((double) y / 250);
+    public void paint(Graphics g, double viewportX, double viewportY, double alpha, double scale) {
+	int blue = 255 - (int) ((double) viewportY / 250);
 	if (blue < 0) {
 	    blue = 0;
 	}
@@ -29,7 +29,7 @@ public class GraphicsEnvironment extends JComponent {
 	g.setColor(backgroundColor);
 	g.fillRect(0, 0, g.getClipBounds().width, g.getClipBounds().height);
 
-	Scaler s = new Scaler(x, y, scale, alpha);
+	Scaler s = new Scaler(viewportX, viewportY, scale, alpha);
 	s.setClipBounds(g.getClipBounds());
 
 	ScalableGraphics sg = new ScalableGraphics(g, s);

@@ -25,7 +25,7 @@ public class Scaler implements IScaler {
     }
 
     @Override
-    public Point p(double x, double y) {
+    public Point rescale(double x, double y) {
 	double dX = generalX;
 	double dY = generalY;
 
@@ -41,7 +41,7 @@ public class Scaler implements IScaler {
     }
 
     @Override
-    public int d(double distance) {
+    public int rescale(double distance) {
 	return (int) Math.round(distance * scale);
     }
 

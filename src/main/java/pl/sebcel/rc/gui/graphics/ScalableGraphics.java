@@ -20,8 +20,8 @@ public class ScalableGraphics {
     }
 
     public void drawOval(double x, double y, double i, double j) {
-	Point p = s.p(x, y);
-	int r = s.d(2 * i);
+	Point p = s.rescale(x, y);
+	int r = s.rescale(2 * i);
 
 	if (r < 2) {
 	    r = 2;
@@ -31,8 +31,8 @@ public class ScalableGraphics {
     }
 
     public void fillOval(double x, double y, int i) {
-	Point p = s.p(x, y);
-	int r = s.d(2 * i);
+	Point p = s.rescale(x, y);
+	int r = s.rescale(2 * i);
 
 	if (r < 2) {
 	    r = 2;
@@ -44,7 +44,7 @@ public class ScalableGraphics {
     public void fillPolygon(ScalablePolygon p) {
 	Polygon polygon = new Polygon();
 	for (double[] point : p.getPoints()) {
-	    Point pt = s.p(point[0], point[1]);
+	    Point pt = s.rescale(point[0], point[1]);
 	    polygon.addPoint(pt.x, pt.y);
 	}
 	g.fillPolygon(polygon);
@@ -53,7 +53,7 @@ public class ScalableGraphics {
     public void drawPolygon(ScalablePolygon p) {
 	Polygon polygon = new Polygon();
 	for (double[] point : p.getPoints()) {
-	    Point pt = s.p(point[0], point[1]);
+	    Point pt = s.rescale(point[0], point[1]);
 	    polygon.addPoint(pt.x, pt.y);
 	}
 	g.drawPolygon(polygon);

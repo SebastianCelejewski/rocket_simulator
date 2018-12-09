@@ -4,9 +4,9 @@ import java.awt.Point;
 
 public interface IScaler {
 
-    public Point p(double x, double y);
+    public Point rescale(double x, double y);
 
-    public int d(double distance);
+    public int rescale(double distance);
 
     public double getScale();
 }

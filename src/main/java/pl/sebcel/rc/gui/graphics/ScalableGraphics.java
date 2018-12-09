@@ -40,17 +40,7 @@ public class ScalableGraphics {
 	    r = 2;
 	}
 
-	double R = Constants.EARTH_RADIUS;
-//	if (s.getScale() > .001 && i == R) {
-//	    ScalablePolygon pt = new ScalablePolygon(0, 0, 0);
-//	    pt.addPoint(-R, -R);
-//	    pt.addPoint(-R, R);
-//	    pt.addPoint(R, R);
-//	    pt.addPoint(R, -R);
-//	    fillPolygon(pt);
-//	} else {
-	    g.fillOval(p.x - r / 2, p.y - r / 2, r, r);
-//	}
+	g.fillOval(p.x - r / 2, p.y - r / 2, r, r);
     }
 
     public void fillPolygon(ScalablePolygon p) {

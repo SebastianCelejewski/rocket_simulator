@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.sebcel.rc.events.RocketSettingsChangedEvent;
+import pl.sebcel.rc.gui.components.Cloud;
+import pl.sebcel.rc.gui.components.Earth;
 import pl.sebcel.rc.gui.components.EngineDust;
 import pl.sebcel.rc.gui.components.EngineSpark;
 import pl.sebcel.rc.gui.components.Rocket;
@@ -18,10 +20,12 @@ public class PhysicalEnvironment implements EventListener<RocketSettingsChangedE
 
     private List<IFocusListener> focusListeners = new ArrayList<IFocusListener>();
 
+    private Earth earth = new Earth();
     private List<Rocket> rockets = new ArrayList<Rocket>();
     private List<Tower> towers = new ArrayList<Tower>();
     private EngineSpark[] sparks = new EngineSpark[400];
     private EngineDust[] dusts = new EngineDust[200];
+    private List<Cloud> clouds = new ArrayList<Cloud>();
 
     private int sparkPointer = 0;
     private int dustPointer = 0;
@@ -58,6 +62,10 @@ public class PhysicalEnvironment implements EventListener<RocketSettingsChangedE
 	}
 	for (int i = 0; i < dusts.length; i++) {
 	    dusts[i] = new EngineDust();
+	}
+
+	for (int i = 0; i < 200; i++) {
+	    clouds.add(new Cloud());
 	}
 
 	reset();
@@ -246,6 +254,8 @@ public class PhysicalEnvironment implements EventListener<RocketSettingsChangedE
     }
 
     public void addComponents(GraphicsEnvironment graphicsEnvironment) {
+	graphicsEnvironment.addGraphicsObject(earth);
+	
 	for (Rocket rocket : rockets) {
 	    graphicsEnvironment.addGraphicsObject(rocket);
 	}
@@ -257,6 +267,9 @@ public class PhysicalEnvironment implements EventListener<RocketSettingsChangedE
 	}
 	for (int i = 0; i < towers.size(); i++) {
 	    graphicsEnvironment.addGraphicsObject(towers.get(i));
+	}
+	for (int i = 0; i < clouds.size(); i++) {
+	    graphicsEnvironment.addGraphicsObject(clouds.get(i));
 	}
     }
 

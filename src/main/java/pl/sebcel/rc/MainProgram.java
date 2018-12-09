@@ -5,7 +5,7 @@ public class MainProgram {
 
     public static void main(String[] args) {
 
-	DualGame g = new DualGame();
+	Game g = new Game();
 	g.start();
 
     }
